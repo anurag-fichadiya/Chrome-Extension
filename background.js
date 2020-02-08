@@ -34,21 +34,27 @@ chrome.runtime.onInstalled.addListener(function()
   });
 });
 */
-chrome.runtime.onInstalled.addListener(function(details) {
+chrome.runtime.onInstalled.addListener(function(details)
+{
   console.log("in back");
+  console.log(document.querySelectorAll("._3ycxrs._2Rwa71"))
   var rule1 = {
     conditions: [
       new chrome.declarativeContent.PageStateMatcher({
         // See declarativeContent docs for more options
-        pageUrl: { hostEquals : 'https://www.flipkart.com' },
+        pageUrl: { pathEquals : 'https://www.flipkart.com/viewcart?otracker=PP_GoToCart' },
       })
     ],
     actions: [ new chrome.declarativeContent.ShowPageAction() ]
   };
 
   // Remove existing rules, if any
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {  
+  chrome.declarativeContent.onPageChanged.removeRules(undefined, function()
+  {  
     // Then, add our rule1
+    console.log("in back"); 
+    var a = document.querySelectorAll("._3ycxrs._2Rwa71");
+    console.log(a)
     chrome.declarativeContent.onPageChanged.addRules([rule1]);
   });
 });
